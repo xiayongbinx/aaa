@@ -1,0 +1,31 @@
+server:
+    port: 8090
+spring:
+    application:
+        name: peipei_test #服务名称--调用的时候根据名称来调用该服务的方法
+    profiles:
+        active: dev
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/peipei_test?serverTimezone=Asia/Shanghai
+        username: peipei_test
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+#    jpa:
+#        hibernate:
+#            ddl-auto: update
+#        show-sql: true
+
+#management:
+#    endpoints:
+#        web:
+#            exposure:
+#                include: "*"
+#    endpoint:
+#        health:
+#            show-details: ALWAYS
+
+#eureka:
+#  client:
+#    serviceUrl: #注册中心的注册地址
+#      defaultZone: http://127.0.0.1:8081/eureka/
+
