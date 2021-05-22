@@ -15,9 +15,14 @@ spring:
 #            ddl-auto: update
 #        show-sql: true
 
-mybatis:
-    mapper-locations: classpath*:mapping/*.xml
-    type-aliases-package: com.example.demo.model
+mybatis-plus:
+    mapper-locations: classpath*:/META-INF/mapper/pdtz/dm/**/*Mapper.xml,classpath*:/META-INF/mapper/framework/dm/**/*Mapper.xml
+    configuration:
+        # 驼峰配置
+        map-underscore-to-camel-case: true
+        # 自动映射
+        auto-mapping-behavior: full
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #showSql
 logging:
     level:
