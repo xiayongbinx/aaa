@@ -59,7 +59,7 @@ public class MybatisPlusGenerator {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
-        String projectPath = System.getProperty("user.dir") + "/" + scanner("maven Modules名称(示例：uqian-jgpt-conf)") + "/";
+        String projectPath = System.getProperty("user.dir") + "/" + scanner("maven Modules名称(示例：user_module)") + "/";
 
         mpg.setGlobalConfig(getGlobalConfig(projectPath));
 
@@ -67,7 +67,7 @@ public class MybatisPlusGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent(scanner("包名(示例：com.uqian.bjfgw.jgpt.conf.checklist.version)"));
+        pc.setParent(scanner("包名(示例：com.example.test6.user_module.login)"));
         pc.setEntity("model");
         mpg.setPackageInfo(pc);
 
@@ -85,7 +85,7 @@ public class MybatisPlusGenerator {
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
 
-        String mapperPath = scanner("mapper 生成路径(示例：jgpt/mysql/checklist/content)");
+        String mapperPath = scanner("mapper 生成路径(示例：user_module/login)");
 
         // 自定义配置会被优先输出
         focList.add(new FileOutConfig(templatePath) {

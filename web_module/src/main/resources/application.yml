@@ -1,5 +1,7 @@
 server:
     port: 8090
+    servlet:
+        context-path: /peipei_test
 spring:
     application:
         name: peipei_test #服务名称--调用的时候根据名称来调用该服务的方法
@@ -16,7 +18,7 @@ spring:
 #        show-sql: true
 
 mybatis-plus:
-    mapper-locations: classpath*:/META-INF/mapper/pdtz/dm/**/*Mapper.xml,classpath*:/META-INF/mapper/framework/dm/**/*Mapper.xml
+    mapper-locations: classpath*:/META-INF/mapper/**/*Mapper.xml,classpath*:/META-INF/mapper/framework/dm/**/*Mapper.xml
     configuration:
         # 驼峰配置
         map-underscore-to-camel-case: true

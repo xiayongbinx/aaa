@@ -6,4 +6,7 @@ public class UserLoginConst {
     //用户登录接口
     public final static String USER_MODULE_LOGIN_MODULE_LOGIN = "/login";
 
+    //用户登录接口--升级版
+    public final static String USER_MODULE_LOGIN_MODULE_LOGIN2 = "/login2";
+
 }

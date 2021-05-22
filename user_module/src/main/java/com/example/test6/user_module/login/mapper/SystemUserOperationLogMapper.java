@@ -1,20 +1,18 @@
 package com.example.test6.user_module.login.mapper;
 
-import com.example.test6.user_module.login.model.SystemUser;
+import com.example.test6.user_module.login.model.SystemUserOperationLog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
 * <p>
-* 用户表 Mapper 接口
+*  Mapper 接口
 * </p>
 *
 * @author duyu
 * @since 2021-05-23
 */
 @Mapper
-public interface SystemUserMapper extends BaseMapper<SystemUser> {
+public interface SystemUserOperationLogMapper extends BaseMapper<SystemUserOperationLog> {
 
-
-    SystemUser user_login_test(SystemUser systemUser);
 }

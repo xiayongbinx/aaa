@@ -18,4 +18,20 @@
         id, username, password, create_time, is_dj, dj_time, jcdj_time
     </sql>
 
+
+    <select id="user_login_test" parameterType="com.example.test6.user_module.login.model.SystemUser" resultMap="BaseResultMap">
+            select
+                  <include refid="Base_Column_List"></include>
+            from
+                 system_user
+        <where>
+
+            <if test="username!=null and username!=''">
+                username=#{username}
+            </if>
+            <if test="password!=null and password!=''">
+                and password=#{password}
+            </if>
+        </where>
+    </select>
 </mapper>

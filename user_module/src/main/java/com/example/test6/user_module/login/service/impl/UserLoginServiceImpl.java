@@ -1,0 +1,74 @@
+package com.example.test6.user_module.login.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.test6.user_module.login.mapper.SystemUserMapper;
+import com.example.test6.user_module.login.mapper.SystemUserOperationLogMapper;
+import com.example.test6.user_module.login.model.SystemUser;
+import com.example.test6.user_module.login.model.SystemUserOperationLog;
+import com.example.test6.user_module.login.service.UserLoginService;
+import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.UUID;
+
+
+@Service
+public class UserLoginServiceImpl implements UserLoginService {
+
+    @Resource
+    SystemUserMapper systemUserMapper;
+
+    @Resource
+    SystemUserOperationLogMapper systemUserOperationLogMapper;
+
+    @Override
+    public boolean selectByuser(SystemUser user) {
+        QueryWrapper<SystemUser> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("username",user.getUsername());
+        userQueryWrapper.eq("password",user.getPassword());
+        SystemUser systemUser = systemUserMapper.selectOne(userQueryWrapper);
+        if (systemUser!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public UserLoginResultVO user_login_test(SystemUser user) {
+        UserLoginResultVO resultVO = new UserLoginResultVO();
+        SystemUser systemUser = systemUserMapper.user_login_test(user);
+        if (systemUser==null){
+            resultVO.setCode(0);
+            resultVO.setMessage("账号或密码错误！");
+        }else {
+            String isDj = systemUser.getIsDj();
+            resultVO.setCode(1);
+            resultVO.setMessage("登陆成功");
+            if (isDj.equals("1")){
+                resultVO.setCode(2);
+                resultVO.setMessage("用户已被冻结，请联系管理员解冻！");
+            }
+        }
+        SystemUserOperationLog operationLog = new SystemUserOperationLog();
+        operationLog.setOperationTime(new Date());
+        operationLog.setUsername(user.getUsername());
+        operationLog.setOperationType("login");
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        operationLog.setId(uuid);
+        addUserLog(operationLog);
+        return resultVO;
+    }
+
+    /**
+     * @Author Administrator
+     * @Description //TODO 用户进行操作时记录日志
+     * @Date 2:03 2021/5/23
+     * @Param [log]
+     * @return void
+     **/
+    private void addUserLog(SystemUserOperationLog log){
+        systemUserOperationLogMapper.insert(log);
+    }
+}
