@@ -1,7 +1,8 @@
-package com.example.test6.web_module;
+package com.example.test6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 public class WebModuleApplication {
