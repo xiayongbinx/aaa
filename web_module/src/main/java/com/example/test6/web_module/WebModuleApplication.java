@@ -1,13 +1,13 @@
-package com.example.test6;
+package com.example.test6.web_module;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Test6Application {
+public class WebModuleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Test6Application.class, args);
+        SpringApplication.run(WebModuleApplication.class, args);
     }
 
 }
