@@ -55,5 +55,9 @@ public class SystemUser implements Serializable {
     @TableField("jcdj_time")
     private Date jcdjTime;
 
+    @ApiModelProperty(value = "邮箱")
+    @TableField("emial")
+    private String emial;
+
 
 }

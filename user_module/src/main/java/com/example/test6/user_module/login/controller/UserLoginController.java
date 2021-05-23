@@ -53,9 +53,8 @@ public class UserLoginController {
 
     @RequestMapping(UserLoginConst.USER_MODULE_REGIST_MODULE_REGIST)
     @ResponseBody
-    public String regist(String username){
-        UserRegistResultVO userRegistResultVO=new UserRegistResultVO();
-            int  user_CHeck_regist_test=userLoginService.user_CHeck_regist_test(username);
+    public String regist(String username,String password,String emial){
+            int  user_CHeck_regist_test=userLoginService.user_CHeck_regist_test(username,password,emial);
             if (user_CHeck_regist_test==0){
                 SystemUser systemUser = new SystemUser();
                 userLoginService.user_regist_test(systemUser);

@@ -24,7 +24,7 @@ public interface UserLoginService {
      **/
 void user_regist_test(SystemUser user);
 
-  Integer  user_CHeck_regist_test (String username);
+  Integer  user_CHeck_regist_test (String username,String password,String emial);
 
 
 

@@ -81,9 +81,9 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
     @Override
-    public Integer user_CHeck_regist_test(String username) {
+    public Integer user_CHeck_regist_test(String username,String password,String emial) {
 
-        if (systemUserMapper.user_CHeck_regist_test(username)==0){
+        if (systemUserMapper.user_CHeck_regist_test(username,password,emial)==0){
 
             return 0;
         }

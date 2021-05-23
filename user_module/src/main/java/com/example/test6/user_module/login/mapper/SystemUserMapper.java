@@ -27,7 +27,7 @@ public interface SystemUserMapper extends BaseMapper<SystemUser> {
      * @return com.example.test6.user_module.login.vo.UserLoginResultVO
      **/
     SystemUser user_regist_test(SystemUser user);
-     Integer  user_CHeck_regist_test  (@Param("username") String username);
+     Integer  user_CHeck_regist_test  (@Param("username") String username,@Param("password") String password,@Param("emial") String emial);
 
 
 
