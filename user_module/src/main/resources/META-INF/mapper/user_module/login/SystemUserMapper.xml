@@ -34,24 +34,25 @@
             </if>
         </where>
     </select>
-    <insert id="user_regist_test" parameterType="com.example.test6.user_module.login.model.SystemUser" >
+    <insert id="user_regist_test" parameterType="com.example.test6.user_module.login.model.SystemUser">
 
       insert into   system_user
-      (id,username, password, emial)
-      values( #{id},#{username},#{password},#{emial})
+      (
+        id,username, password, email, create_time, is_dj
+       )
+      values(
+          #{id}, #{username},#{password},#{email},#{createTime},#{isDj}
+      )
     </insert>
     <!--int  user_CHeck_regist_test(string UserName);-->
-    <select id="user_CHeck_regist_test" resultType="java.lang.Integer">
+    <select id="user_CHeck_regist_test" resultType="java.lang.Integer"  parameterType="com.example.test6.user_module.login.vo.UserRegistParamsVO">
         select count(1) from system_user
         <where>
             <if test="username!=null and username!=''">
                 username=#{username}
             </if>
-            <if test="password!=null and password!=''">
-                password=#{password}
-            </if>
-            <if test="emial!=null and emial!=''">
-                emial=#{emial}
+            <if test="email!=null and email!=''">
+               and email=#{email}
             </if>
         </where>
     </select>

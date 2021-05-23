@@ -1,14 +1,17 @@
 package com.example.test6.user_module.login.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.example.test6.user_module.login.mapper.SystemUserMapper;
 import com.example.test6.user_module.login.mapper.SystemUserOperationLogMapper;
 import com.example.test6.user_module.login.model.SystemUser;
 import com.example.test6.user_module.login.model.SystemUserOperationLog;
 import com.example.test6.user_module.login.service.UserLoginService;
 import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import com.example.test6.user_module.login.vo.UserRegistParamsVO;
 import com.example.test6.user_module.login.vo.UserRegistResultVO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -63,13 +66,32 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
     @Override
-    public void user_regist_test(SystemUser user) {
-        SystemUser user1=new SystemUser();
-        if(user1==null){
-            systemUserMapper.user_regist_test(user1);
-            user1.setIsDj("1");
-            user1.setCreateTime(new Date());
+    @Transactional
+    public UserRegistResultVO user_regist_test(UserRegistParamsVO user) {
+        //结果封装类初始化
+        UserRegistResultVO resultVO = new UserRegistResultVO();
+        //查询用户是否已存在
+        QueryWrapper<SystemUser> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("username",user.getUsername());
+        SystemUser select_user = systemUserMapper.selectOne(userQueryWrapper);
+//        Integer test = systemUserMapper.user_CHeck_regist_test(user);
+        if (select_user!=null){
+            //返回结果封装
+            resultVO.setCode(0);
+            resultVO.setMessage("用户已存在！");
+            return resultVO;
         }
+        //新建一条用户记录
+        SystemUser systemUser = new SystemUser();
+        systemUser.setEmail(user.getEmail());
+        systemUser.setUsername(user.getUsername());
+        systemUser.setPassword(user.getPassword());
+        systemUser.setIsDj("1");
+        systemUser.setCreateTime(new Date());
+//        systemUserMapper.user_regist_test(systemUser);
+        systemUserMapper.insert(systemUser);
+
+        //添加用户操作日志
         SystemUserOperationLog operationLog = new SystemUserOperationLog();
         operationLog.setOperationTime(new Date());
         operationLog.setUsername(user.getUsername());
@@ -77,19 +99,12 @@ public class UserLoginServiceImpl implements UserLoginService {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         operationLog.setId(uuid);
         addUserLog(operationLog);
-
+        //返回结果封装
+        resultVO.setCode(1);
+        resultVO.setMessage("注册成功！");
+        return resultVO;
     }
 
-    @Override
-    public Integer user_CHeck_regist_test(String username,String password,String emial) {
-
-        if (systemUserMapper.user_CHeck_regist_test(username,password,emial)==0){
-
-            return 0;
-        }
-
-        return 1;
-    }
 
     /**
      * @Author Administrator

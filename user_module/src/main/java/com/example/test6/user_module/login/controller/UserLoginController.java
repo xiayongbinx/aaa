@@ -5,8 +5,11 @@ import com.example.test6.user_module.login.constant.UserLoginConst;
 import com.example.test6.user_module.login.model.SystemUser;
 import com.example.test6.user_module.login.service.UserLoginService;
 import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import com.example.test6.user_module.login.vo.UserRegistParamsVO;
 import com.example.test6.user_module.login.vo.UserRegistResultVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -53,15 +56,16 @@ public class UserLoginController {
 
     @RequestMapping(UserLoginConst.USER_MODULE_REGIST_MODULE_REGIST)
     @ResponseBody
-    public String regist(String username,String password,String emial){
-            int  user_CHeck_regist_test=userLoginService.user_CHeck_regist_test(username,password,emial);
-            if (user_CHeck_regist_test==0){
-                SystemUser systemUser = new SystemUser();
-                userLoginService.user_regist_test(systemUser);
-                return "新用户可以注册";
-            }
+    public UserRegistResultVO regist(@RequestBody UserRegistParamsVO userRegistParamsVO){
+        UserRegistResultVO registResultVO = userLoginService.user_regist_test(userRegistParamsVO);
+        return registResultVO;
+    }
 
-        return "您的账号已经存在或者账号被冻结";
+    @RequestMapping(UserLoginConst.USER_MODULE_REGIST_MODULE_REGIST2)
+    @ResponseBody
+    public UserRegistResultVO regist2(@RequestBody UserRegistParamsVO userRegistParamsVO){
+        UserRegistResultVO registResultVO = userLoginService.user_regist_test(userRegistParamsVO);
+        return registResultVO;
     }
 
 }

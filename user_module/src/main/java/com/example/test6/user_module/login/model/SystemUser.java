@@ -43,7 +43,7 @@ public class SystemUser implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
-    @ApiModelProperty(value = "是否冻结（登录失败5次后冻结）")
+    @ApiModelProperty(value = "是否冻结（登录失败5次后冻结）0冻结，1正常")
     @TableField("is_dj")
     private String isDj;
 
@@ -56,8 +56,8 @@ public class SystemUser implements Serializable {
     private Date jcdjTime;
 
     @ApiModelProperty(value = "邮箱")
-    @TableField("emial")
-    private String emial;
+    @TableField("email")
+    private String email;
 
 
 }

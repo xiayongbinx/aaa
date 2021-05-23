@@ -2,9 +2,8 @@ package com.example.test6.user_module.login.mapper;
 
 import com.example.test6.user_module.login.model.SystemUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import com.example.test6.user_module.login.vo.UserRegistParamsVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
 * <p>
@@ -26,8 +25,17 @@ public interface SystemUserMapper extends BaseMapper<SystemUser> {
      * @Param [user]
      * @return com.example.test6.user_module.login.vo.UserLoginResultVO
      **/
-    SystemUser user_regist_test(SystemUser user);
-     Integer  user_CHeck_regist_test  (@Param("username") String username,@Param("password") String password,@Param("emial") String emial);
+    void user_regist_test(SystemUser user);
+
+    /**
+     * @Author xiayongbin
+     * @Description //TODO 查询用户是否存在
+     * @Date 22:10 2021/5/23
+     * @Param [username, password, emial]
+     * @return com.example.test6.user_module.login.model.SystemUser
+     *
+     * @param systemUser*/
+    Integer  user_CHeck_regist_test  (UserRegistParamsVO systemUser);
 
 
 

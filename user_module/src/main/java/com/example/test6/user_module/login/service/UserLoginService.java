@@ -2,6 +2,7 @@ package com.example.test6.user_module.login.service;
 
 import com.example.test6.user_module.login.model.SystemUser;
 import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import com.example.test6.user_module.login.vo.UserRegistParamsVO;
 import com.example.test6.user_module.login.vo.UserRegistResultVO;
 
 public interface UserLoginService {
@@ -22,10 +23,7 @@ public interface UserLoginService {
      * @Param [user]
      * @return com.example.test6.user_module.login.vo.UserLoginResultVO
      **/
-void user_regist_test(SystemUser user);
-
-  Integer  user_CHeck_regist_test (String username,String password,String emial);
-
+    UserRegistResultVO user_regist_test(UserRegistParamsVO user);
 
 
 }

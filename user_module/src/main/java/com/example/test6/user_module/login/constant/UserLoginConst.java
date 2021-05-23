@@ -10,5 +10,6 @@ public class UserLoginConst {
     public final static String USER_MODULE_LOGIN_MODULE_LOGIN2 = "/login2";
     //用户注册接口
      public final static String USER_MODULE_REGIST_MODULE_REGIST= "/regist";
+     public final static String USER_MODULE_REGIST_MODULE_REGIST2= "/regist2";
 
 }
