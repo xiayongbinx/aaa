@@ -7,6 +7,7 @@ import com.example.test6.user_module.login.model.SystemUser;
 import com.example.test6.user_module.login.model.SystemUserOperationLog;
 import com.example.test6.user_module.login.service.UserLoginService;
 import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import com.example.test6.user_module.login.vo.UserRegistResultVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -59,6 +60,35 @@ public class UserLoginServiceImpl implements UserLoginService {
         operationLog.setId(uuid);
         addUserLog(operationLog);
         return resultVO;
+    }
+
+    @Override
+    public void user_regist_test(SystemUser user) {
+        SystemUser user1=new SystemUser();
+        if(user1==null){
+            systemUserMapper.user_regist_test(user1);
+            user1.setIsDj("1");
+            user1.setCreateTime(new Date());
+        }
+        SystemUserOperationLog operationLog = new SystemUserOperationLog();
+        operationLog.setOperationTime(new Date());
+        operationLog.setUsername(user.getUsername());
+        operationLog.setOperationType("regist");
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        operationLog.setId(uuid);
+        addUserLog(operationLog);
+
+    }
+
+    @Override
+    public Integer user_CHeck_regist_test(String username) {
+
+        if (systemUserMapper.user_CHeck_regist_test(username)==0){
+
+            return 0;
+        }
+
+        return 1;
     }
 
     /**

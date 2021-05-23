@@ -34,4 +34,19 @@
             </if>
         </where>
     </select>
+    <insert id="user_regist_test" parameterType="com.example.test6.user_module.login.model.SystemUser" >
+
+      insert into   system_user
+      (username, password)
+      values( #{username},#{password})
+    </insert>
+    <!--int  user_CHeck_regist_test(string UserName);-->
+    <select id="user_CHeck_regist_test" resultType="java.lang.Integer">
+        select count(1) from system_user
+        <where>
+            <if test="username!=null and username!=''">
+                username=#{username}
+            </if>
+        </where>
+    </select>
 </mapper>

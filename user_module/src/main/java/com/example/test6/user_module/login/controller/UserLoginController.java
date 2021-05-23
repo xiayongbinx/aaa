@@ -5,11 +5,14 @@ import com.example.test6.user_module.login.constant.UserLoginConst;
 import com.example.test6.user_module.login.model.SystemUser;
 import com.example.test6.user_module.login.service.UserLoginService;
 import com.example.test6.user_module.login.vo.UserLoginResultVO;
+import com.example.test6.user_module.login.vo.UserRegistResultVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @RequestMapping(UserLoginConst.HOME)
@@ -48,5 +51,18 @@ public class UserLoginController {
         return resultVO;
     }
 
+    @RequestMapping(UserLoginConst.USER_MODULE_REGIST_MODULE_REGIST)
+    @ResponseBody
+    public String regist(String username){
+        UserRegistResultVO userRegistResultVO=new UserRegistResultVO();
+            int  user_CHeck_regist_test=userLoginService.user_CHeck_regist_test(username);
+            if (user_CHeck_regist_test==0){
+                SystemUser systemUser = new SystemUser();
+                userLoginService.user_regist_test(systemUser);
+                return "新用户可以注册";
+            }
+
+        return "您的账号已经存在或者账号被冻结";
+    }
 
 }
