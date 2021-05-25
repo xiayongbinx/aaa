@@ -8,11 +8,13 @@
         <result column="username" property="username" />
         <result column="operation_time" property="operationTime" />
         <result column="operation_type" property="operationType" />
+        <result column="operation_result" property="operationResult" />
+        <result column="errorNum" property="errorNum" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, username, operation_time, operation_type
+        id, username, operation_time, operation_type, operation_result, errorNum
     </sql>
 
 </mapper>

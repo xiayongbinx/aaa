@@ -12,11 +12,11 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author duyu
- * @since 2021-05-23
+ * @since 2021-05-24
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -41,6 +41,14 @@ public class SystemUserOperationLog implements Serializable {
     @ApiModelProperty(value = "操作类型(login:登录，login_out:退出登录,user_dj:冻结用户)")
     @TableField("operation_type")
     private String operationType;
+
+    @ApiModelProperty(value = "0:失败1:成功")
+    @TableField("operation_result")
+    private String operationResult;
+
+    @ApiModelProperty(value = "失败次数")
+    @TableField("errorNum")
+    private Integer errorNum;
 
 
 }
