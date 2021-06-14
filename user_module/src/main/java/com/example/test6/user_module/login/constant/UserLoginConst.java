@@ -12,4 +12,11 @@ public class UserLoginConst {
      public final static String USER_MODULE_REGIST_MODULE_REGIST= "/regist";
      public final static String USER_MODULE_REGIST_MODULE_REGIST2= "/regist2";
 
+
+    //解除冻结接口
+    public final static String USER_MODULE_REGIST_MODULE_JCDJ= "/jcdj";
+
+    //发送验证码接口
+    public final static String USER_MODULE_REGIST_MODULE_GETYANZHENGMA= "/getYanzhengma";
+
 }

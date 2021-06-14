@@ -1,0 +1,43 @@
+server:
+    port: 8090
+spring:
+    application:
+        name: peipei_test #服务名称--调用的时候根据名称来调用该服务的方法
+    profiles:
+        active: dev
+    datasource:
+        url: jdbc:mysql://192.168.124.5:3306/peipei_test?serverTimezone=Asia/Shanghai
+        username: peipei_test
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+#    jpa:
+#        hibernate:
+#            ddl-auto: update
+#        show-sql: true
+mybatis-plus:
+    configuration:
+        map-underscore-to-camel-case: true
+        auto-mapping-behavior: full
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapper-locations: classpath*:mapper/**/*Mapper.xml
+    global-config:
+        # 逻辑删除配置
+        db-config:
+            # 删除前
+            logic-not-delete-value: 1
+            # 删除后
+            logic-delete-value: 0
+#management:
+#    endpoints:
+#        web:
+#            exposure:
+#                include: "*"
+#    endpoint:
+#        health:
+#            show-details: ALWAYS
+
+#eureka:
+#  client:
+#    serviceUrl: #注册中心的注册地址
+#      defaultZone: http://127.0.0.1:8081/eureka/
+

@@ -7,9 +7,7 @@ import com.example.test6.user_module.login.mapper.SystemUserOperationLogMapper;
 import com.example.test6.user_module.login.model.SystemUser;
 import com.example.test6.user_module.login.model.SystemUserOperationLog;
 import com.example.test6.user_module.login.service.UserLoginService;
-import com.example.test6.user_module.login.vo.UserLoginResultVO;
-import com.example.test6.user_module.login.vo.UserRegistParamsVO;
-import com.example.test6.user_module.login.vo.UserRegistResultVO;
+import com.example.test6.user_module.login.vo.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -158,6 +156,41 @@ public class UserLoginServiceImpl implements UserLoginService {
         resultVO.setCode(1);
         resultVO.setMessage("注册成功！");
         return resultVO;
+    }
+/**
+ * @Author xiayongbin
+ * @Description //TODO 获取用户验证码
+ * @Date 21:36 2021/6/13
+ * @Param [systemUser]
+ * @return com.example.test6.user_module.login.vo.UserGetYanZhengMaResultVO
+ **/
+    @Override
+    public UserGetYanZhengMaResultVO user_get_yanzhengma_test(UserGetYanZhengMaParamsVO userGetYanZhengMaParamsVO) {
+        UserGetYanZhengMaResultVO resultVO=new UserGetYanZhengMaResultVO();
+        QueryWrapper<SystemUser> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("username",userGetYanZhengMaParamsVO.getUsername());
+        SystemUser systemUser = systemUserMapper.selectOne(userQueryWrapper);
+        if (systemUser==null){
+            resultVO.setCode(0);
+            resultVO.setMessage("用户不存在");
+            return resultVO;
+        }
+        String isDj=systemUser.getIsDj();
+        if (!isDj.equals("0")){
+            resultVO.setCode(2);
+            resultVO.setMessage("账号未冻结！");
+            return resultVO;
+        }
+        String email = systemUser.getEmail();
+        if (!userGetYanZhengMaParamsVO.getEmail().equals(email)){
+            resultVO.setCode(2);
+            resultVO.setMessage("邮箱地址与注册邮箱不符！");
+            return resultVO;
+        }
+//发送验证码
+        String yanzhengma = UUID.randomUUID().toString().replace("-", "").substring(0, 5);
+
+        return null;
     }
 
 

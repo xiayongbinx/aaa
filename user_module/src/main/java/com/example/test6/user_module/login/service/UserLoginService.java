@@ -1,9 +1,7 @@
 package com.example.test6.user_module.login.service;
 
 import com.example.test6.user_module.login.model.SystemUser;
-import com.example.test6.user_module.login.vo.UserLoginResultVO;
-import com.example.test6.user_module.login.vo.UserRegistParamsVO;
-import com.example.test6.user_module.login.vo.UserRegistResultVO;
+import com.example.test6.user_module.login.vo.*;
 
 public interface UserLoginService {
 
@@ -24,6 +22,16 @@ public interface UserLoginService {
      * @return com.example.test6.user_module.login.vo.UserLoginResultVO
      **/
     UserRegistResultVO user_regist_test(UserRegistParamsVO user);
+/**
+ * @Author xiayongbin
+ * @Description //TODO 获取验证码接口
+ * @Date 21:28 2021/6/13
+ * @Param [systemUser]
+ * @return java.lang.Integer
+ **/
+
+UserGetYanZhengMaResultVO user_get_yanzhengma_test  (UserGetYanZhengMaParamsVO userGetYanZhengMaParamsVO);
+
 
 
 }
